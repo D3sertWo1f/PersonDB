@@ -1,0 +1,67 @@
+<% include partials/_header%>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/add" method="POST"> 
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Insert a Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="age" placeholder="Insert Age" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" placeholder="Insert E-Mail" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="country" placeholder="Insert Country" class="form-control">
+                        </div>
+                        <button class="btn btn-primary btn-block">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Country</th>
+                        <th>ToDo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i<persons.length ; i++) { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= persons[i].name%></td>
+                            <td><%= persons[i].age%></td>
+                            <td><%= persons[i].email%></td>
+                            <td><%= persons[i].country%></td>
+                            <td>
+                                <a href="/turn/<%= persons[i]._id%>" 
+                                    class="btn <%= persons[i].status ? 'btn-success':'btn-dark'%>">
+                                    <%= persons[i].status ? 'Saved':'Save'%>
+                                </a>
+                                <a href="/delete/<%= persons[i]._id%>" class="btn btn-danger">Delete</a>
+                                <a href="/edit/<%= persons[i]._id%>" class="btn btn-info">Update</a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<% include partials/_footer%>
